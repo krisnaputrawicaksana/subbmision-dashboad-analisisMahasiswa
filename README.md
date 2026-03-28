@@ -14,7 +14,7 @@ Jaya Jaya Institut adalah sebuah institusi pendidikan tinggi yang telah beropera
 
 1. **Analisis Eksploratif (EDA) & Pembersihan Data:** Mengidentifikasi pola, anomali, dan korelasi antar variabel demografi, finansial, dan akademik dari dataset historis mahasiswa.
 2. **Pengembangan Business Dashboard:** Membuat _dashboard_ interaktif berskala eksekutif untuk memonitor _Key Performance Indicators_ (KPI) kelulusan dan memvisualisasikan akar masalah _dropout_.
-3. **Pemodelan Machine Learning:** Mengembangkan dan melatih model klasifikasi (_Random Forest_) untuk memprediksi status akhir mahasiswa (_Dropout, Enrolled, Graduate_) berdasarkan data profil awal dan semester pertama.
+3. **Pemodelan Machine Learning:** Mengembangkan dan melatih model klasifikasi biner (Random Forest) untuk memprediksi status akhir mahasiswa (Dropout atau Graduate) sebagai sistem early warning berdasarkan data profil awal dan semester pertama.
 4. **Pengembangan Antarmuka Prototipe (UI):** Membangun aplikasi web interaktif yang memungkinkan Penasihat Akademik memasukkan data mahasiswa dan menerima hasil prediksi secara _real-time_.
 
 ### Persiapan
