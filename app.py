@@ -161,28 +161,26 @@ if st.button("JALANKAN ANALISIS PREDISIKSI", use_container_width=True):
     # Ubah ke DataFrame
     input_df = pd.DataFrame([input_data])
     
-    # Eksekusi Prediksi
+    # Eksekusi Prediksi (Revisi)
     with st.spinner('Sedang melakukan analisis komputasi...'):
         try:
             # Preprocessing & Prediksi
             input_prep = preprocessor.transform(input_df)
             prediction = model.predict(input_prep)[0]
             
-            # Mapping hasil (Bahasa Akademis)
-            status_map = {0: "POTENSI DROPOUT", 1: "STATUS ENROLLED (DIPERTAHANKAN)", 2: "STATUS GRADUATE (PREDIKSI LULUS)"}
+            # Mapping hasil (Bahasa Akademis) - Hanya 2 Kelas
+            status_map = {0: "POTENSI DROPOUT", 1: "STATUS GRADUATE (PREDIKSI LULUS)"}
             
-            # Tampilan Hasil (Menggunakan Container Terbuka & Berwarna Hijau/Merah)
+            # Tampilan Hasil
             st.markdown("---")
             if prediction == 0:
                 result_color = "#FFCDD2" # Merah Muda tipis
-            elif prediction == 1:
-                result_color = "#FFF9C4" # Kuning Emas tipis
             else:
                 result_color = "#C8E6C9" # Hijau tipis
 
             st.markdown(f"""
             <div class='official-report' style='background-color: {result_color};'>
-                <h3 class='report-title'>LAPORAN HASIL PREDIKSI SISTEM</h3>
+                <h3 class='report-title'>LAPORAN HASIL PREDIKSI SISTEM AI</h3>
                 <h5 style='text-align: center; color: #212529;'> Early Warning System - Jaya Jaya Institut</h5>
                 <p style='text-align: center; color: #6C757D; font-size: 14px;'>Tanggal Analisis: {datetime.now().strftime('%d %B %Y')}</p>
                 <hr style='border: 1px solid #212529;'>
@@ -196,13 +194,9 @@ if st.button("JALANKAN ANALISIS PREDISIKSI", use_container_width=True):
                 if prediction == 0:
                     st.error(f"**Peringatan (Alert)!** Sistem mendeteksi profil mahasiswa ini memiliki probabilitas tinggi untuk berakhir dengan status **{status_map[prediction]}**.")
                     st.info("**Action Item Akademik:** Segera panggil mahasiswa untuk konsultasi mendalam dengan Penasihat Akademik (PA). Periksa status kelancaran finansial dan berikan pengayaan akademik khusus di Semester 2.")
-                elif prediction == 1:
-                    st.warning(f"Sistem mengklasifikasikan mahasiswa ini dalam kategori **{status_map[prediction]}**. Mahasiswa sedang di zona abu-abu studi.")
-                    st.info("**Action Item Akademik:** Pantau progres performa mahasiswa di Semester 2. Mahasiswa ini sangat rentan namun memiliki potensi kelulusan jika diberikan motivasi akademik yang kuat.")
                 else:
                     st.success(f"**Kabar Baik!** Sistem memprediksi mahasiswa ini akan berakhir dengan status **{status_map[prediction]}** secara tepat waktu.")
                     st.info("**Action Item Akademik:** Pertahankan standar performa yang sudah ada. Berikan apresiasi agar motivasi belajar mahasiswa tetap tinggi.")
-                    
         except Exception as e:
             st.error(f"Terjadi kegagalan komputasi saat memproses analisis data: {e}. Silakan hubungi tim teknis institusi.")
 
